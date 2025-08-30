@@ -425,21 +425,21 @@
         // 网站数据 - 可以从外部JSON文件加载
         let websitesData = [
             {
-                name: "个人平台",
-                description: "展示我的个人平台",
-                url: "https://xiaohondan.github.io/portfolio",
+                name: "小红蛋",
+                description: "我的个人平台",
+                url: "https://xiaohondan.github.io",
                 tags: ["个人平台"],
                 image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
-                name: "好友个人平台",
-                description: "展示好友个人平台",
+                name: "一架南航的737MAX",
+                description: "好友个人平台",
                 url: "https://xiaohondan.github.io/robzhnogguo/",
-                tags: ["好友个人平台"],
+                tags: ["个人平台"],
                 image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
             },
             {
-                name: "技术博客",
+                name: "小红蛋博客",
                 description: "分享编程技巧和开发经验的个人博客",
                 url: "https://xiaohondan.github.io/xiaohondan",
                 tags: ["技术", "博客", "编程"],
@@ -529,7 +529,7 @@
                     name: document.getElementById('siteName').value,
                     description: document.getElementById('siteDescription').value,
                     url: document.getElementById('siteUrl').value,
-                    tags: document.getElementById('siteTags').value.split(',').map(tag => tag.trim()),
+                    标签: document.getElementById('siteTags').value.split(',').map(tag => tag.trim()),
                     image: '' // 可以添加图片URL输入框
                 };
                 
