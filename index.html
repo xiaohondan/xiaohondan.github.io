@@ -3,647 +3,589 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小红蛋 | 官网</title>
-    <!-- 添加Favicon标签页图标 -->
-    <link rel="icon" type="image/x-icon" href="https://xiaohondan.github.io/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>小红蛋网站快速切换</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #e6e6e6;
-            line-height: 1.8;
-            min-height: 100vh;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+            color: #333;
+            line-height: 1.6;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1000px;
-            width: 100%;
-            background: rgba(30, 30, 46, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            margin: 40px 0;
-            position: relative;
-            border: 1px solid #44475a;
-            backdrop-filter: blur(10px);
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         header {
-            background: linear-gradient(120deg, #e74c3c, #c0392b);
-            padding: 60px 30px 40px;
             text-align: center;
-            position: relative;
-            color: white;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-        }
-        
-        h1 {
-            font-size: 3.8rem;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            letter-spacing: 1px;
-            font-weight: 800;
-        }
-        
-        .subtitle {
-            font-size: 1.6rem;
-            opacity: 0.92;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
+            padding: 30px 0;
+            margin-bottom: 30px;
         }
         
         .logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 30px auto 20px;
+            margin-bottom: 15px;
         }
         
-        .logo-inner {
-            width: 140px;
-            height: 140px;
+        .logo-icon {
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin-right: 10px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #ff5252;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ff7675;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 8px 20px rgba(255, 82, 82, 0.2);
+        }
+        
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff6b6b;
+            font-size: 1.2rem;
+        }
+        
+        .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .website-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .website-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(255, 82, 82, 0.2);
+        }
+        
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
             background: rgba(255, 255, 255, 0.9);
+            border: none;
             border-radius: 50%;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border: 5px solid #f1c40f;
-            animation: pulse 3 infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.7); }
-            50% { transform: scale(1.05); }
-            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(241, 196, 15, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
-        }
-        
-        .logo-inner i {
-            font-size: 5rem;
-            color: #e74c3c;
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .qq-box {
-            background: rgba(40, 40, 60, 0.7);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 30px 0;
-            border: 2px solid #3498db;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .qq-box:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #3498db, #2c3e50);
-        }
-        
-        .qq-box h2 {
-            color: #f8f9fa;
-            margin-bottom: 25px;
-            font-size: 2.2rem;
-        }
-        
-        .qq-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #e74c3c;
-            letter-spacing: 2px;
-            margin: 25px 0;
-            text-shadow: 0 2px 3px rgba(0,0,0,0.1);
-            font-family: 'Courier New', monospace;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 10px 20px;
-            border-radius: 10px;
-            display: inline-block;
-        }
-        
-        .note {
-            background: rgba(40, 40, 60, 0.7);
-            padding: 35px;
-            border-radius: 15px;
-            margin: 40px 0;
-            position: relative;
-            overflow: hidden;
-            border-left: 6px solid #3498db;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .note h3 {
-            color: #f8f9fa;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-            display: inline-block;
-        }
-        
-        .note p {
-            font-size: 1.25rem;
-            margin: 20px 0;
-            color: #e6e6e6;
-            line-height: 1.8;
-        }
-        
-        .note ul {
-            padding-left: 30px;
-            margin: 30px 0;
-        }
-        
-        .note li {
-            margin: 18px 0;
-            font-size: 1.2rem;
-            position: relative;
-            padding-left: 35px;
-        }
-        
-        .note li:before {
-            content: "•";
-            color: #e74c3c;
-            font-size: 2rem;
-            position: absolute;
-            left: 0;
-            top: -5px;
-        }
-        
-        .sponsor-container {
-            text-align: center;
-            margin: 60px 0 30px;
-            position: relative;
-        }
-        
-        .sponsor-title {
-            font-size: 2.8rem;
-            margin-bottom: 40px;
-            font-weight: 700;
-            color: #f1c40f;
-            text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .sponsor-title:after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 4px;
-            background: linear-gradient(90deg, #e74c3c, #f1c40f);
-            border-radius: 2px;
-        }
-        
-        .sponsor-button {
-            display: inline-flex;
-            align-items: center;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            padding: 25px 70px;
-            border-radius: 70px;
-            text-decoration: none;
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin: 20px 0 40px;
-            transition: all 0.3 ease;
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
-            position: relative;
-            overflow: hidden;
-            border: none;
             cursor: pointer;
-            animation: glow 2 infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(231, 76, 60, 0.5); }
-            to { box-shadow: 0 0 40px rgba(231, 76, 60, 0.8), 0 0 60px rgba(231, 76, 60, 0.6); }
-        }
-        
-        .sponsor-button:before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5 ease;
-        }
-        
-        .sponsor-button:hover:before {
-            left: 100%;
-        }
-        
-        .sponsor-button i {
-            margin-right: 20px;
-            font-size: 2rem;
-        }
-        
-        .sponsor-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(231, 76, 60, 0.6);
-        }
-        
-        .sponsor-button:active {
-            transform: translateY(2px);
-        }
-        
-        .benefits {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            margin: 50px 0;
-            flex-wrap: wrap;
-        }
-        
-        .benefit-card {
-            flex: 1;
-            min-width: 250px;
-            background: rgba(50, 50, 70, 0.6);
-            border-radius: 20px;
-            padding: 35px 25px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border-top: 4px solid #3498db;
-            transition: all 0.4 ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .benefit-card:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(231, 76, 60, 0.1));
-            z-index: -1;
+            color: #ff5252;
             opacity: 0;
-            transition: opacity 0.4 ease;
+            transition: opacity 0.3s ease;
+            z-index: 10;
         }
         
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .benefit-card:hover:before {
+        .website-card:hover .delete-btn {
             opacity: 1;
         }
         
-        .benefit-card i {
-            font-size: 4rem;
-            color: #f1c40f;
-            margin-bottom: 25px;
-            text-shadow: 0 0 15px rgba(241, 196, 15, 0.4);
+        .delete-btn:hover {
+            background: #ff5252;
+            color: white;
         }
         
-        .benefit-card h4 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #f8f9fa;
+        .card-image {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffe6e6;
         }
         
-        .benefit-card p {
-            font-size: 1.15rem;
-            color: #e6e6e6;
-            line-height: 1.7;
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        /* 页脚样式 */
+        .card-image .placeholder {
+            font-size: 3rem;
+            color: #ff6b6b;
+        }
+        
+        .website-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content h3 {
+            color: #ff5252;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .card-content p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .card-tags span {
+            background: #ffe6e6;
+            color: #ff5252;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .visit-btn {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .visit-btn:hover {
+            background: #ff5252;
+        }
+        
+        .add-website {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .add-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .add-btn:hover {
+            background: #ff5252;
+        }
+        
         footer {
             text-align: center;
-            padding: 40px 30px;
-            color: #7f8c8d;
-            font-size: 1.15rem;
-            border-top: 1px solid #44475a;
-            width: 100%;
-            background: rgba(25, 25, 35, 0.7);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: #ff7675;
         }
         
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .copyright {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .icp-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 20px;
-            background: rgba(40, 40, 60, 0.6);
-            border-radius: 30px;
-            border: 1px solid #44475a;
-            transition: all 0.3 ease;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #bbb;
-        }
-        
-        .icp-info:hover {
-            background: rgba(52, 73, 94, 0.8);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            color: #f1c40f;
-        }
-        
-        .icp-info img {
-            margin-right: 8px;
-            transition: transform 0.3 ease;
-        }
-        
-        .icp-info:hover img {
-            transform: rotate(360deg);
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 25px;
-            margin-top: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .footer-link {
-            color: #bbb;
-            text-decoration: none;
-            transition: color 0.3 ease;
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-link:hover {
-            color: #f1c40f;
-        }
-        
-        .footer-link i {
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
-        
-        .particles {
-            position: absolute;
+        .modal {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
         }
         
-        .particle {
-            position: absolute;
-            background: rgba(241, 196, 15, 0.5);
-            border-radius: 50%;
-            opacity: 0;
-            animation: float 15 infinite linear;
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-1000px) translateX(1000px) rotate(720deg);
-                opacity: 0;
-            }
+        .modal h2 {
+            margin-bottom: 20px;
+            color: #ff5252;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-cancel {
+            background: #ddd;
+            color: #555;
+        }
+        
+        .btn-cancel:hover {
+            background: #ccc;
+        }
+        
+        .btn-submit {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: #ff5252;
         }
         
         @media (max-width: 768px) {
-            .container {
-                margin: 20px 0;
-                border-radius: 15px;
-            }
-            
-            header {
-                padding: 40px 20px 30px;
-                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
-            }
-            
             h1 {
-                font-size: 2.8rem;
-            }
-            
-            .subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .content {
-                padding: 25px;
-            }
-            
-            .qq-number {
                 font-size: 2.2rem;
             }
             
-            .benefits {
+            .websites-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
                 flex-direction: column;
             }
             
-            .sponsor-button {
-                padding: 20px 50px;
-                font-size: 1.5rem;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 15px;
+            .btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
-    
     <div class="container">
         <header>
-            <h1>小红蛋</h1>
-            <p class="subtitle">创新与品质的完美结合，为您提供卓越的在线体验</p>
             <div class="logo">
-                <div class="logo-inner">
-                    <i class="fas fa-fire"></i>
+                <div class="logo-icon">
+                    <i class="fas fa-egg"></i>
                 </div>
+                <h1>小红蛋网站快速切换</h1>
             </div>
+            <p class="subtitle">一个整洁的导航中心，快速访问您制作的所有网站</p>
         </header>
         
-        <div class="content">
-            <div class="qq-box">
-                <h2><i class="fas fa-comments"></i> 联系我们</h2>
-                <p>有任何问题或建议，请随时通过QQ联系我们</p>
-                <div class="qq-number">3815099625</div>
-                <p>我们将在24小时内回复您的消息</p>
-            </div>
-            
-            <div class="benefits">
-                <div class="benefit-card">
-                    <i class="fas fa-rocket"></i>
-                    <h4>高效性能</h4>
-                    <p>优化网站加载速度，提供流畅的用户体验，确保您享受快速响应的服务</p>
-                </div>
-                <div class="benefit-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4>安全可靠</h4>
-                    <p>采用最新安全技术，保障用户数据安全，提供值得信赖的服务</p>
-                </div>
-                <div class="benefit-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h4>响应式设计</h4>
-                    <p>完美适配各种设备，随时随地访问，无论手机、平板还是电脑</p>
-                </div>
-            </div>
-            
-            <div class="note">
-                <h3><i class="fas fa-info-circle"></i> 网站提示</h3>
-                <p>小红蛋官网目前正在测试阶段~</p>
-                <ul>
-                    <li>当前版本为测试版，功能持续完善中</li>
-                    <li>我们将添加更多实用的HTML元素和功能</li>
-                    <li>未来会持续优化用户体验</li>
-                </ul>
-                <p>您的支持对我们非常重要，感谢您使用小红蛋服务！</p>
-            </div>
-            
-            <div class="sponsor-container">
-                <h2 class="sponsor-title">支持小红蛋</h2>
-                <a href="https://afdian.tv/a/xiaohondan" target="_blank" class="sponsor-button">
-                    <i class="fas fa-gem"></i> 立即赞助
-                </a>
-                <p style="font-size: 1.2rem; color: #bbb; max-width: 600px; margin: 0 auto;">
-                    您的赞助将帮助我们提供更优质的服务，支持小红蛋的持续发展
-                </p>
-            </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索网站">
+            <i class="fas fa-search"></i>
         </div>
         
-        <!-- 页脚部分 -->
+        <div class="websites-grid" id="websitesGrid">
+            <!-- 网站卡片将通过JavaScript动态生成 -->
+        </div>
+        
+        <div class="add-website">
+            <button class="add-btn" id="addWebsiteBtn">
+                <i class="fas fa-plus"></i> 添加新网站
+            </button>
+        </div>
+        
         <footer>
-            <div class="footer-content">
-                <div class="copyright">
-                    © 2025 小红蛋官网 | 小红蛋 保留所有权利 | 测试版 v1.0 | 感谢您的支持
-                </div>
-                
-                <!-- 更新备案信息 -->
-                <a class="icp-info" href="https://icp.we2050.com/id.php?keyword=20250114" target="_blank">
-                    <img src="https://icp.we2050.com/logo.png" width="20" height="20">
-                    团ICP备20250114号
-                </a>
-                
-                <!-- 页脚链接 -->
-                <div class="footer-links">
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-home"></i> 首页
-                    </a>
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-info-circle"></i> 关于我们
-                    </a>
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-envelope"></i> 联系方式
-                    </a>
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-shield-alt"></i> 隐私政策
-                    </a>
-                    <a href="#" class="footer-link">
-                        <i class="fas fa-file-contract"></i> 服务条款
-                    </a>
-                </div>
-            </div>
+            <p>© 2025 小红蛋网站快速切换 | 精心制作，方便访问</p>
         </footer>
     </div>
-    
+
+    <!-- 添加网站模态框 -->
+    <div class="modal" id="addModal">
+        <div class="modal-content">
+            <h2>添加新网站</h2>
+            <form id="websiteForm">
+                <div class="form-group">
+                    <label for="siteName">网站名称</label>
+                    <input type="text" id="siteName" required>
+                </div>
+                <div class="form-group">
+                    <label for="siteDescription">网站描述</label>
+                    <textarea id="siteDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="siteUrl">网站URL</label>
+                    <input type="url" id="siteUrl" required>
+                </div>
+                <div class="form-group">
+                    <label for="siteTags">标签（用逗号分隔）</label>
+                    <input type="text" id="siteTags">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-cancel" id="cancelBtn">取消</button>
+                    <button type="submit" class="btn btn-submit">添加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 确认删除模态框 -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <h2>确认删除</h2>
+            <p>您确定要删除这个网站吗？此操作无法撤销。</p>
+            <div class="form-actions">
+                <button class="btn btn-cancel" id="cancelDeleteBtn">取消</button>
+                <button class="btn btn-submit" id="confirmDeleteBtn">确认删除</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // 创建粒子背景
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
+        // 网站数据 - 可以从外部JSON文件加载
+        let websitesData = [
+            {
+                name: "个人平台",
+                description: "展示我的个人平台",
+                url: "https://xiaohondan.github.io/portfolio",
+                tags: ["个人平台"],
+                image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                name: "好友个人平台",
+                description: "展示好友个人平台",
+                url: "https://xiaohondan.github.io/robzhnogguo/",
+                tags: ["好友个人平台"],
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                name: "技术博客",
+                description: "分享编程技巧和开发经验的个人博客",
+                url: "https://xiaohondan.github.io/xiaohondan",
+                tags: ["技术", "博客", "编程"],
+                image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        // 初始化函数
+        function init() {
+            renderWebsites(websitesData);
+            setupEventListeners();
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // 随机大小 (2px - 8px)
-                const size = Math.random() * 6 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // 随机位置
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                
-                // 随机颜色
-                const colors = ['#f1c40f', '#e74c3c', '#3498db', '#9b59b6'];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.backgroundColor = color;
-                
-                // 随机动画延迟
-                const delay = Math.random() * 15;
-                particle.style.animationDelay = `${delay}s`;
-                
-                particlesContainer.appendChild(particle);
+            // 尝试从localStorage加载数据
+            const savedData = localStorage.getItem('xiaohondanWebsites');
+            if (savedData) {
+                websitesData = JSON.parse(savedData);
+                renderWebsites(websitesData);
             }
         }
-        
-        // 初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
+
+        // 渲染网站卡片
+        function renderWebsites(websites) {
+            const grid = document.getElementById('websitesGrid');
+            grid.innerHTML = '';
             
-            // 赞助按钮悬停效果
-            const sponsorBtn = document.querySelector('.sponsor-button');
-            sponsorBtn.addEventListener('mouseenter', () => {
-                sponsorBtn.style.background = 'linear-gradient(135deg, #ff6b6b, #c0392b)';
+            websites.forEach((site, index) => {
+                const card = document.createElement('div');
+                card.className = 'website-card';
+                card.setAttribute('data-index', index);
+                
+                card.innerHTML = `
+                    <button class="delete-btn" data-index="${index}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <div class="card-image">
+                        ${site.image ? 
+                            `<img src="${site.image}" alt="${site.name}">` : 
+                            `<div class="placeholder"><i class="fas fa-globe"></i></div>`
+                        }
+                    </div>
+                    <div class="card-content">
+                        <h3>${site.name}</h3>
+                        <p>${site.description}</p>
+                        <div class="card-tags">
+                            ${site.tags.map(tag => `<span>${tag}</span>`).join('')}
+                        </div>
+                        <a href="${site.url}" target="_blank" class="visit-btn">访问网站</a>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 搜索功能
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const filteredWebsites = websitesData.filter(site => {
+                    return site.name.toLowerCase().includes(searchTerm) ||
+                           site.description.toLowerCase().includes(searchTerm) ||
+                           site.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                });
+                renderWebsites(filteredWebsites);
             });
             
-            sponsorBtn.addEventListener('mouseleave', () => {
-                sponsorBtn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+            // 添加网站按钮
+            const addBtn = document.getElementById('addWebsiteBtn');
+            const modal = document.getElementById('addModal');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const form = document.getElementById('websiteForm');
+            
+            addBtn.addEventListener('click', () => {
+                modal.style.display = 'flex';
             });
-        });
+            
+            cancelBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const newWebsite = {
+                    name: document.getElementById('siteName').value,
+                    description: document.getElementById('siteDescription').value,
+                    url: document.getElementById('siteUrl').value,
+                    tags: document.getElementById('siteTags').value.split(',').map(tag => tag.trim()),
+                    image: '' // 可以添加图片URL输入框
+                };
+                
+                websitesData.push(newWebsite);
+                localStorage.setItem('xiaohondanWebsites', JSON.stringify(websitesData));
+                
+                renderWebsites(websitesData);
+                modal.style.display = 'none';
+                form.reset();
+            });
+            
+            // 删除功能
+            const confirmModal = document.getElementById('confirmModal');
+            const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+            const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+            let websiteToDelete = null;
+            
+            // 事件委托处理删除按钮点击
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.delete-btn')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    websiteToDelete = parseInt(e.target.closest('.delete-btn').getAttribute('data-index'));
+                    confirmModal.style.display = 'flex';
+                }
+            });
+            
+            cancelDeleteBtn.addEventListener('click', () => {
+                confirmModal.style.display = 'none';
+                websiteToDelete = null;
+            });
+            
+            confirmDeleteBtn.addEventListener('click', () => {
+                if (websiteToDelete !== null) {
+                    websitesData.splice(websiteToDelete, 1);
+                    localStorage.setItem('xiaohondanWebsites', JSON.stringify(websitesData));
+                    renderWebsites(websitesData);
+                    confirmModal.style.display = 'none';
+                    websiteToDelete = null;
+                }
+            });
+            
+            // 点击模态框外部关闭
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+                if (e.target === confirmModal) {
+                    confirmModal.style.display = 'none';
+                    websiteToDelete = null;
+                }
+            });
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
-
 </html>
-
