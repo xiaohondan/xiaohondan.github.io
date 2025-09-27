@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红蛋</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .signboard {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .signboard::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, #ffebee 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-section {
+            margin-bottom: 30px;
+        }
+        
+        .logo-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ff6b6b;
+            box-shadow: 0 10px 20px rgba(255,107,107,0.3);
+        }
+        
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .description {
+            font-size: 1rem;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .feature {
+            background: #fff5f5;
+            padding: 15px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 120px;
+            border: 2px solid #ffe0e0;
+        }
+        
+        .feature h3 {
+            color: #ff6b6b;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .feature p {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        .decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #ffebee;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        
+        .decoration:nth-child(1) {
+            top: -30px;
+            left: -30px;
+        }
+        
+        .decoration:nth-child(2) {
+            bottom: -30px;
+            right: -30px;
+        }
+        
+        @media (max-width: 600px) {
+            .signboard {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signboard">
+        <div class="decoration"></div>
+        <div class="decoration"></div>
+        
+        <div class="content">
+            <div class="logo-section">
+                <img src="喵.jpg" alt="小红蛋" class="logo-image">
+            </div>
+            
+            <h1 class="title">小红蛋</h1>
+            <p class="subtitle">可爱 · 温馨 · 创意</p>
+            
+            <p class="description">
+                欢迎来到小红蛋的世界喵！我们致力于为您带来最温暖、最有趣的体验喵。
+                无论是创意设计还是贴心服务，小红蛋都将是您的最佳选择喵。
+            </p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>创意设计</h3>
+                    <p>独特的视觉体验</p>
+                </div>
+                <div class="feature">
+                    <h3>贴心服务</h3>
+                    <p>温暖如家的关怀</p>
+                </div>
+                <div class="feature">
+                    <h3>品质保证</h3>
+                    <p>卓越的质量标准</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
