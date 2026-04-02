@@ -48,7 +48,7 @@
 </div>
 
 <script>
-    const LOCAL_API = 'http://localhost:8081';   // 与脚本端口一致
+    const LOCAL_API = 'http://localhost:8085';   // 与脚本端口一致
     const authBtn = document.getElementById('authBtn');
     const authCodeInput = document.getElementById('authCode');
     const statusDiv = document.getElementById('statusMsg');
@@ -84,7 +84,7 @@
                 // 通知脚本退出
                 await fetch(`${LOCAL_API}/confirm`, { method: 'POST' }).catch(e => console.warn);
                 // 跳转到主页
-                window.location.href = '/index.html';
+                window.location.href = '/#';
                 return true;
             } else {
                 setStatus('❌ 授权码错误，请检查后重试', 'error');
