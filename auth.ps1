@@ -9,7 +9,7 @@ $authVerified = $false
 
 Clear-Host
 Write-Host "`n========================================================" -ForegroundColor Cyan
-Write-Host "           ?? 本地授权脚本已启动" -ForegroundColor Yellow
+Write-Host "            本地授权脚本已启动" -ForegroundColor Yellow
 Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host "   授权码: $authCode" -ForegroundColor Green
 Write-Host "   请在网页授权界面输入以上 6 位数字完成登录" -ForegroundColor White
@@ -23,7 +23,7 @@ $listener.Prefixes.Add("http://localhost:$port/")
 try {
     $listener.Start()
 } catch {
-    Write-Host "? 启动监听失败: $_" -ForegroundColor Red
+    Write-Host " 启动监听失败: $_" -ForegroundColor Red
     Read-Host "按回车退出"
     exit 1
 }
@@ -60,7 +60,7 @@ try {
             try {
                 $authCode = Get-Random -Minimum 100000 -Maximum 999999
                 $authVerified = $false
-                Write-Host "?? 授权码已刷新: $authCode" -ForegroundColor Cyan
+                Write-Host " 授权码已刷新: $authCode" -ForegroundColor Cyan
                 $result = @{ code = $authCode } | ConvertTo-Json
                 $response.StatusCode = 200
                 $response.ContentType = 'application/json'
@@ -70,7 +70,7 @@ try {
                 $response.OutputStream.Write($buffer, 0, $buffer.Length)
                 $response.Close()
             } catch {
-                Write-Host "?? 刷新验证码时出错: $_" -ForegroundColor Red
+                Write-Host " 刷新验证码时出错: $_" -ForegroundColor Red
                 $response.StatusCode = 500
                 $response.ContentType = 'application/json'
                 $response.AddHeader('Access-Control-Allow-Origin', '*')
@@ -103,10 +103,10 @@ try {
                     $isValid = ($inputCode -eq $authCode)
                     if ($isValid) {
                         $authVerified = $true
-                        Write-Host "? 授权码验证成功，等待网页确认退出..." -ForegroundColor Green
+                        Write-Host " 授权码验证成功，等待网页确认退出..." -ForegroundColor Green
                         $result = @{ success = $true } | ConvertTo-Json
                     } else {
-                        Write-Host "? 授权码验证失败 (输入: $inputCode, 正确: $authCode)" -ForegroundColor Red
+                        Write-Host " 授权码验证失败 (输入: $inputCode, 正确: $authCode)" -ForegroundColor Red
                         $result = @{ success = $false } | ConvertTo-Json
                     }
                 }
@@ -119,7 +119,7 @@ try {
                 $response.Close()
             }
             elseif ($urlPath -eq '/confirm') {
-                Write-Host "?? 收到确认信号，脚本即将退出。" -ForegroundColor Cyan
+                Write-Host " 收到确认信号，脚本即将退出。" -ForegroundColor Cyan
                 $result = @{ status = "exit" } | ConvertTo-Json
                 $response.StatusCode = 200
                 $response.ContentType = 'application/json'
@@ -145,7 +145,7 @@ try {
     # 确保无论何种退出都会关闭监听器并释放端口
     $listener.Stop()
     $listener.Close()
-    Write-Host "?? 本地授权服务已关闭。" -ForegroundColor Magenta
+    Write-Host " 本地授权服务已关闭。" -ForegroundColor Magenta
 }
 
 Write-Host "按任意键退出..."
