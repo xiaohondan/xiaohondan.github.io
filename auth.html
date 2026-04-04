@@ -113,7 +113,7 @@
                 setStatus('✅ 授权成功，正在跳转...', 'success');
                 localStorage.setItem('auth_success', 'true');
                 await fetch(`${LOCAL_API}/confirm`, { method: 'POST' }).catch(e => console.warn);
-                window.location.href = '/index.html';
+                window.location.href = '/';
                 return true;
             } else {
                 setStatus('❌ 授权码错误，请重新获取验证码或检查输入', 'error');
